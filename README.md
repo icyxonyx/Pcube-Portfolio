@@ -30,7 +30,8 @@ A polished, animation‑rich developer portfolio built with **Next.js 15**, **
 
 ## 🚀 Live Demo
 
-[Netlify](https://your-domain.com)
+[Netlify](https://pcube-portfolio.netlify.app)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a3ccc0f2-7795-421f-91d8-bb04c3712c7f/deploy-status)](https://app.netlify.com/projects/pcube-portfolio/deploys)
 
 ---
 
