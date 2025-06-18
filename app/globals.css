@@ -1,0 +1,460 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+  --primary-green: #86d17b;
+  --primary-green-dark: #65a85f;
+  --avatar-bg: rgba(134, 209, 123, 0.8);
+}
+
+.dark {
+  --background-start-rgb: 17, 24, 39;
+  --background-end-rgb: 17, 24, 39;
+  --avatar-bg: rgba(101, 168, 95, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  cursor: none !important; /* Hide default cursor */
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.5s ease;
+  overflow-x: hidden;
+  cursor: none !important;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  transition: background-color 0.5s ease, color 0.5s ease;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  cursor: none !important;
+}
+
+/* Enhanced transitions for all elements */
+* {
+  transition: background-color 0.5s ease, border-color 0.5s ease,
+    color 0.5s ease, box-shadow 0.3s ease, transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Custom Scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  transition: background-color 0.5s ease;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    var(--primary-green),
+    var(--primary-green-dark)
+  );
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--primary-green-dark), #5a9754);
+}
+
+/* Section full-screen dimensions */
+section {
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure proper stacking context */
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 40;
+}
+
+/* Mobile menu backdrop */
+.mobile-menu-backdrop {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Improved text readability in dark mode */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #f9fafb;
+  transition: color 0.3s ease;
+}
+
+.dark p {
+  color: #d1d5db;
+  transition: color 0.3s ease;
+}
+
+/* Custom green gradients */
+.bg-gradient-green {
+  background: linear-gradient(
+    135deg,
+    var(--primary-green),
+    var(--primary-green-dark)
+  );
+}
+
+.text-gradient-green {
+  background: linear-gradient(
+    135deg,
+    var(--primary-green),
+    var(--primary-green-dark)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@layer components {
+  .avatar {
+    @apply w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative rounded-full overflow-hidden;
+  }
+
+  .avatar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    /* ← use a single CSS var that we’ll override below */
+    background-color: var(--avatar-bg);
+    transition: background-color 0.5s ease;
+    z-index: 0;
+  }
+
+  /* Make sure your image (and Next.js fill wrapper) sit on top */
+  .avatar img,
+  .avatar .next-image {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Enhanced gradient animations */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* Smooth particle animations */
+.particle-container {
+  transition: opacity 0.5s ease;
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 20px 40px rgba(134, 209, 123, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mobile-menu-backdrop {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+
+  section {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}
+
+/* Ensure content doesn't overlap with sidebar */
+@media (min-width: 768px) {
+  .main-content {
+    margin-left: 16rem; /* 64 * 0.25rem */
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-content {
+    margin-left: 18rem; /* 72 * 0.25rem */
+  }
+}
+
+/* Enhanced focus states with green theme */
+.focus\:ring-green:focus {
+  --tw-ring-color: #86d17b;
+  --tw-ring-opacity: 0.5;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 134 209 123;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 134 209 123;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 134 209 123;
+    --chart-1: 134 209 123;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 134 209 123;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 134 209 123;
+  }
+
+  .dark {
+    --background: 17 24 39;
+    --foreground: 249 250 251;
+    --card: 31 41 55;
+    --card-foreground: 249 250 251;
+    --popover: 31 41 55;
+    --popover-foreground: 249 250 251;
+    --primary: 134 209 123;
+    --primary-foreground: 17 24 39;
+    --secondary: 55 65 81;
+    --secondary-foreground: 249 250 251;
+    --muted: 55 65 81;
+    --muted-foreground: 156 163 175;
+    --accent: 134 209 123;
+    --accent-foreground: 249 250 251;
+    --destructive: 239 68 68;
+    --destructive-foreground: 249 250 251;
+    --border: 55 65 81;
+    --input: 55 65 81;
+    --ring: 134 209 123;
+    --chart-1: 134 209 123;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 134 209 123;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 134 209 123;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+}
+
+/* Custom ReactFlow Styles for Space Theme */
+.skill-tree-flow .react-flow__background {
+  background: transparent !important;
+}
+
+.skill-tree-flow .react-flow__controls {
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+}
+
+.skill-tree-flow .react-flow__controls button {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+}
+
+.skill-tree-flow .react-flow__controls button:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: scale(1.05) !important;
+}
+
+.skill-tree-flow .react-flow__minimap {
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+}
+
+.skill-tree-panel {
+  z-index: 1000 !important;
+}
+
+/* Viewport height fixes for mobile */
+@supports (height: 100dvh) {
+  section {
+    min-height: 100dvh;
+  }
+
+  .sidebar-container {
+    height: 100dvh;
+  }
+}
+
+/* Prevent horizontal overflow */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Smooth theme transitions for all interactive elements */
+button,
+input,
+textarea,
+select,
+a {
+  transition: all 0.3s ease;
+}
+
+/* Enhanced backdrop blur support */
+@supports (backdrop-filter: blur(20px)) {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+}
+
+/* Custom edge animations */
+.react-flow__edge-path {
+  animation: flow 3s ease-in-out infinite;
+}
+
+@keyframes flow {
+  0%,
+  100% {
+    stroke-dasharray: 5, 5;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 5, 5;
+    stroke-dashoffset: 10;
+  }
+}
+
+/* Responsive skill tree adjustments */
+@media (max-width: 768px) {
+  .skill-tree-panel {
+    max-width: calc(100vw - 2rem) !important;
+  }
+
+  .skill-tree-flow .react-flow__controls {
+    bottom: 1rem !important;
+    right: 1rem !important;
+  }
+
+  .skill-tree-flow .react-flow__minimap {
+    bottom: 1rem !important;
+    left: 1rem !important;
+    width: 120px !important;
+    height: 80px !important;
+  }
+}
