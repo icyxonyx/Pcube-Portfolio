@@ -30,21 +30,16 @@ A polished, animation‑rich developer portfolio built with **Next.js 15**, **
 
 ## 🚀 Live Demo
 
-<table style="border: none; border-collapse: collapse;">
+<table>
   <tr>
-    <td style="border: none; padding: 0; vertical-align: middle;">
-      <a href="https://pcube-portfolio.netlify.app">
-        <img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />
-      </a>
+    <td style="padding:0; vertical-align:middle;">
+      <a href="https://pcube-portfolio.netlify.app"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"/></a>
     </td>
-    <td style="border: none; padding: 0 0 0 8px; vertical-align: middle;">
-      <a href="https://app.netlify.com/projects/pcube-portfolio/deploys">
-        <img src="https://api.netlify.com/api/v1/badges/a3ccc0f2-7795-421f-91d8-bb04c3712c7f/deploy-status" alt="Netlify Status" />
-      </a>
+    <td style="padding:0; vertical-align:middle;">
+      <a href="https://app.netlify.com/projects/pcube-portfolio/deploys"><img src="https://api.netlify.com/api/v1/badges/a3ccc0f2-7795-421f-91d8-bb04c3712c7f/deploy-status" alt="Deploy Status"/></a>
     </td>
   </tr>
 </table>
-
 
 ---
 
