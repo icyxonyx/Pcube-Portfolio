@@ -148,8 +148,8 @@ export default function ContactSection({ sectionIndex }: ContactSectionProps) {
     {
       icon: Phone,
       title: "Phone",
-      content: "+91 7304314946",
-      href: "tel:+917304314946",
+      content: "+91 ----------",
+      href: "",
     },
   ];
 
